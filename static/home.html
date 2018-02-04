@@ -17,59 +17,21 @@
 		      <li><a href="sleep.html" style="color:black">Sleep Tracker</a></li>
 		      <li><a href="weight.html" style="color:black">Weight Tracker</a></li>
 		      <li><a href="hydrate.html" style="color:black">Hydrate Tracker</a></li>
-		      <li><a href="index.html" style="color:black">Log Out</a></li>
+		      <li><a href="welcome.html" style="color:black">Log Out</a></li>
 		    </ul>
 		  </div>
 		</nav>
 
-		<table class="bordered centered highlight" style="width:80%;margin-left:auto;margin-right:auto">
+		<table class="bordered centered highlight" style="width:50%;margin-left:auto;margin-right:auto;margin-top: 50px">
       <thead>
-        <tr>
-          <th>Name</th>
-          <th>Unique Identifier</th>
-          <th>Contact Info</th>
-          <th>Sex</th>
-          <th>DOB</th>
-          <th>Address</th>
-          <th>Status</th>
-        </tr>
       </thead>
 
       <tbody>
-      	{% for patient in patients %}
-	        <tr>
-	          <td>{{patient.last_name}}, {{patient.first_name}}</td>
-	          <td>{{patient.id}}</td>
-	          <td>{{home_phone}}</td>
-	          <td>{{patient.gender}}</td>
-	          <td>{{patient.address}}</td>
-	          <td>{{patient.date_of_birth}}</td>
-	          <td>{{patient.patient_status}}</td>
-	        </tr>
+      	{% for item in patients %}
+	          <tr>
+	          	<th>{{item.0}}</th> <td>{{item.1}}</td>
+	          </tr>
         {% endfor %}
-
-
-            {% if patients.has_other_pages %}
-  <ul class="pagination">
-    {% if patients.has_previous %}
-      <li><a href="?page={{ patients.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in patients.paginator.page_range %}
-      {% if patients.number == i %}
-        <li class="active">{{ i }} </li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if patients.has_next %}
-      <li><a href="?page={{ patients.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
       </tbody>
     </table>
 
