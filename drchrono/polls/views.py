@@ -10,46 +10,42 @@ import db_methods
 
 patient = None
 username = ""
-
+patientID = -1
 
 #start of views.
 def welcome(request):
 	return render(request, 'welcome.html')
 
 def home(request):
-	global patient, username
+	global patient, username, patientID
 
 	if not patient:
 		code = request.GET.get('code')
 		error = request.GET.get('error')
-		print(code, error, patient)
 
 		if error: 
 			return render(request, 'error.html')
 
 		patient = api_methods.get_token(code)
 		data = api_methods.get_patient_data(patient)
-		patient.patient_data, username = api_methods.set_patient_data(data, patient)
-		# print("patient: ", patient.patient_data)
+		patient.patient_data, username, patientID = api_methods.set_patient_data(data, patient)
+
 		api_methods.get_observation(patient)
 	return render(request, 'home.html', {'username': username, 'patients': patient.patient_data})
+
 
 def bp(request):
 	return render(request, 'bp.html', {'username': username})
 
 def chart_bp(request):
-	# print(request)
-	# if not patient:
-	# 	return redirect("/welcome")
-
 	systolic = request.GET.get("systolic")
 	diastolic = request.GET.get("diastolic")
 	if systolic is None or diastolic is None:
 		return redirect("/bp.html")
 
-	db_methods.save_bp(systolic, diastolic, patient)
-
-	return render(request, 'chart_bp.html', {'username': username})	
+	db_methods.save_bp(systolic, diastolic, patientID)
+	obj = db_methods.get_bp(patientID)
+	return render(request, 'chart_bp.html', {'username': username, 'bp': obj})	
 
 
 def sleep(request):
@@ -60,8 +56,10 @@ def chart_sleep(request):
 	if sleep is None:
 		return redirect("/sleep.html")
 
-	db_methods.save_sleep(sleep, patient)
-	return render(request, 'chart_sleep.html', {'username': username})
+	db_methods.save_sleep(sleep, patientID)
+	obj = db_methods.get_sleep(patientID)
+	obj["username"] = username
+	return render(request, 'chart_sleep.html', obj)
 
 
 def weight(request):
@@ -72,7 +70,8 @@ def chart_weight(request):
 	if weight is None:
 		return redirect("/weight.html")
 
-	db_methods.save_weight(weight, patient)
+	db_methods.save_weight(weight, patientID)
+	obj = db_methods.get_weight(patientID)
 	return render(request, 'chart_weight.html', {'username': username})
 
 
@@ -84,7 +83,8 @@ def chart_hydrate(request):
 	if hydrate is None:
 		return redirect("/hydrate.html")
 
-	db_methods.save_hydrate(hydrate, patient)
+	db_methods.save_hydrate(hydrate, patientID)
+	obj = db_methods.get_hydrate(patientID)
 	return render(request, 'chart_hydrate.html', {'username': username})
 
 

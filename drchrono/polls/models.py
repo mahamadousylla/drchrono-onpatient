@@ -27,6 +27,12 @@ class Patient:
 		self.code = code
 
 
-class PatientID: #models.Model
-	app_label = "PatientID"
+class PatientID(models.Model): #models.Model
 	id = models.IntegerField(primary_key=True)
+	sleep = list()
+	sleep_dates = list()
+	
+	bp = list()
+
+	weight_dates = list()
+	hydrate_dates = list()

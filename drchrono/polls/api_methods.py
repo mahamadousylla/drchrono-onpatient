@@ -86,7 +86,7 @@ def set_patient_data(data, patient):
 
 	patient_data.append( ("Active", data["active"]) )
 
-	return patient_data, username
+	return patient_data, username, data["identifier"]
 
 
 def get_observation(patient):

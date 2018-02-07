@@ -8,8 +8,12 @@
 
 
 <div id="container" style="min-width: 310px;max-width:1000px;height:400px;margin:0 auto;margin-top: 100px">
-	<h4>Weight Tracker</h4>
-	<script src="{% static "charts_sleep.js" %}" type="text/javascript"></script>
+	<h4>Sleep Tracker</h4>
+	<script src="{% static "makeCharts.js" %}" type="text/javascript"></script>
+
+	<script language="javascript">
+   makeCharts("{{ title }}", "{{ xaxis }}", {{ dates }}, "{{ yaxis }}", "{{ seriesName }}", {{ data }}, {{ mx }});
+	</script>
 </div>
 
 
