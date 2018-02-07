@@ -1,13 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Hydrate Tracker</title>
+		<title>Blood Pressure Tracker</title>
 		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 	</head>
-	<body>
+	<body style="width: 100%;height:100%">
 		<nav style="background-color: white;">
 		  <div class="nav-wrapper">
-		    <a class="brand-logo" style="color:black;margin-left:15px" >drchrono <img src="drchronoicon.svg"> <span style="color:aquamarine"> Hi {{ username }}!</span></a>
+		    <a class="brand-logo" style="color:black;margin-left:15px" ><img style="margin-top: 10px"src="{% static "icon.svg" %}" /> <!-- <span style="color:aquamarine"> Hi {{ username }}!</span> --></a>
+		     <!-- #26a69a -->
 		    <ul id="nav-mobile" class="right hide-on-med-and-down">
 		    	<li><a href="home.html" style="color:black">Home</a></li>
 		      <li><a href="bp.html" style="color:black">Blood Pressure Tracker</a></li>
@@ -18,6 +21,8 @@
 		    </ul>
 		  </div>
 		</nav>
-		<h1>Hydrate Tracker</h1>
-	</body>
+
+			{% block content%}
+			{% endblock content %}
+		</body>
 </html>

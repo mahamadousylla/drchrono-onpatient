@@ -27,6 +27,6 @@ class Patient:
 		self.code = code
 
 
-class PatientID():
-	app_label = "patient"
+class PatientID: #models.Model
+	app_label = "PatientID"
 	id = models.IntegerField(primary_key=True)

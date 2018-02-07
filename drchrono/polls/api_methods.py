@@ -87,3 +87,23 @@ def set_patient_data(data, patient):
 	patient_data.append( ("Active", data["active"]) )
 
 	return patient_data, username
+
+
+def get_observation(patient):
+	results = list()
+	url = URL_CHRONO + 'onpatient_api/fhir/Observation'
+	
+	while url:
+		response = requests.get(URL_CHRONO + 'onpatient_api/fhir/Observation', headers= {
+	  	'Authorization': 'Bearer %s' % patient.get_access_token(),
+		})
+
+		response.raise_for_status()
+		data = response.json()
+
+		results.extend(data['results'])
+		url = data['next']
+	print(results)
+
+
+

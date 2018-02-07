@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+		
+<div>
+	<div style="width: 30%;margin: 0 auto;margin-top: 100px">
+		<h5>Blood Pressure Tracker</h5>
+
+		<form action="/chart_bp.html">
+			<div>
+			  <label>Systolic Blood Pressure</label>
+			  <select class="browser-default" name="systolic">
+			    <option value="" disabled selected>Choose your option</option>
+			    <option value="Normal">Below 120</option>
+			    <option value="Elevated">120 - 129</option>
+			    <option value="High Blood Pressure (Hypertension) Stage 1">130 - 139</option>
+			    <option value="High Blood Pressure (Hypertension) Stage 2">140 or higher</option>
+			  </select>
+			</div>
+
+			<div style="margin-top: 15px";>
+			  <label>Diastolic Blood Pressure</label>
+			  <select class="browser-default" name="diastolic">
+			    <option value="" disabled selected>Choose your option</option>
+			    <option value="Normal">Below 80</option>
+			    <option value="High Blood Pressure (Hypertension) Stage 1">80 - 89</option>
+			    <option value="High Blood Pressure (Hypertension) Stage 2">90 or higher</option>
+			  </select>
+			</div>
+		</div>
+
+		<div style="margin: 0 auto; margin-left: 45%; margin-top: 20px;width:40%">
+			<input class="waves-effect waves-light btn" type="submit" value="Submit">
+		</div>
+	</form>
+</div>
+
+{% endblock content %}
