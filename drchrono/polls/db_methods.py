@@ -84,7 +84,7 @@ def save_hydrate(hydrate, patientID):
 	now = datetime.datetime.now()
 	curr_date = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
 	
-	patient_obj.hydrate.append(int(weight))
+	patient_obj.hydrate.append(int(hydrate))
 	patient_obj.hydrate_dates.append(curr_date)
 	patient_obj.save()
 
