@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
-	<h1>Weight Tracker</h1>
+<div>
+	<div style="width: 40%;margin: 0 auto;margin-top: 100px;margin-left: 40%">
+		<h5>Weight Tracker</h5>
+
+		<form action="/chart_weight.html">
+			<div class="row">
+		    <div class="input-field col s6">
+		      <input value="" id="weight" name="weight" type="text" class="validate">
+		      <label class="active" for="weight">How much do you weight?</label>
+		      <input class="waves-effect waves-light btn" type="submit" value="Submit">
+		    </div>
+		  </div>
+		</form>
+	</div>
+
+</div>
 
 {% endblock content %}

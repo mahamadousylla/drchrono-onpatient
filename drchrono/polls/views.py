@@ -66,13 +66,16 @@ def weight(request):
 	return render(request, 'weight.html', {'username': username})
 
 def chart_weight(request):
+	print("hereeeee")
 	weight = request.GET.get("weight")
+	print("weight: ", weight)
 	if weight is None:
 		return redirect("/weight.html")
 
 	db_methods.save_weight(weight, patientID)
 	obj = db_methods.get_weight(patientID)
-	return render(request, 'chart_weight.html', {'username': username})
+	obj["username"] = username
+	return render(request, 'chart_weight.html', obj)
 
 
 def hydrate(request):

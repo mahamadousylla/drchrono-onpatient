@@ -34,5 +34,11 @@ class PatientID(models.Model): #models.Model
 	
 	bp = list()
 
+	weight = list()
 	weight_dates = list()
+	
 	hydrate_dates = list()
+
+
+
+

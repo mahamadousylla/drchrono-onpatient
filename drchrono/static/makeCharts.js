@@ -1,4 +1,4 @@
-function makeCharts(title, xaxis, dates, yaxis, seriesName, data, mx) {
+function makeCharts(title, xaxis, dates, yaxis, seriesName, data, mx = null) {
 	console.log(title, xaxis, dates, yaxis, seriesName, data);
   dates = dates.split(",");
   for (var i = 0; i < dates.length; i++) {
@@ -6,7 +6,6 @@ function makeCharts(title, xaxis, dates, yaxis, seriesName, data, mx) {
     dates[i] = dates[i].replace('&#39;', '');
     dates[i] = dates[i].replace('&#39;', '');
   }
-  
 
  	Highcharts.chart('container', {
 

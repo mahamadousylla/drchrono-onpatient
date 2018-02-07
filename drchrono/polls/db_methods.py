@@ -17,14 +17,11 @@ def save_bp(systolic, diastolic, patientID):
 	patient_obj = helper(patientID)
 	bp = systolic + "/" + diastolic
 	curr_date = datetime.datetime.now()
-	status = ""
+	status = "" #figure out how to get what bp is. normal, stage 1 etc
 
 	obj = [curr_date, systolic, diastolic, status]
 	patient_obj.bp.append(obj)
 	
-	# patient_obj.bp_dates.append(curr_date)
-	# patient_obj.bp.append(bp)
-	# patient_obj.append() #figure out how to get what bp is. normal, stage 1 etc
 
 
 def get_bp(patientID):
@@ -44,7 +41,7 @@ def save_sleep(sleep, patientID):
 
 def get_sleep(patientID):
 	p = PatientID.objects.get(id=patientID)
-	print(p.sleep, p.sleep_dates)
+
 	obj = {
 		"title": "Sleep Tracker",
 		"xaxis": "Dates",
@@ -58,18 +55,25 @@ def get_sleep(patientID):
 	return obj
 
 def save_weight(weight, patientID):
-	pass
+	patient_obj = helper(patientID)
+	now = datetime.datetime.now()
+	curr_date = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
+	
+	patient_obj.weight.append(int(weight))
+	patient_obj.weight_dates.append(curr_date)
+	patient_obj.save()
 
 
 def get_weight(patientID):
+	p = PatientID.objects.get(id=patientID)
 
 	obj = {
 		"title": "Weight Tracker",
 		"xaxis": "Dates",
-		"dates": dates,
+		"dates": p.weight_dates,
 		"yaxis": "Weight",
 		"seriesName": "Weight",
-		"data": data,
+		"data": p.weight
 	}
 
 	return obj
