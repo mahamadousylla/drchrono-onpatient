@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-{% load static %}
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div>
+	<div style="width: 45%;margin: 0 auto;margin-top: 100px;margin-left: 40%">
+		<h5>Hydrate Tracker</h5>
 
+		<form action="/chart_hydrate.html">
+			<div class="row">
+		    <div class="input-field col s6">
+		      <input value="" id="weight" name="weight" type="text" class="validate">
+		      <label class="active" for="weight">How much water did you drink today (gallons)?</label>
+		      <input class="waves-effect waves-light btn" type="submit" value="Submit">
+		    </div>
+		  </div>
+		</form>
+	</div>
 
-<div id="container" style="min-width: 310px;max-width:1000px;height:400px;margin:0 auto;margin-top: 100px">
-	<h4>Hydrate Tracker</h4>
-	<script src="{% static "makeCharts.js" %}" type="text/javascript"></script>
-
-	<script language="javascript">
-   makeCharts("{{ title }}", "{{ xaxis }}", "{{ dates }}", "{{ yaxis }}", "{{ seriesName }}", {{ data }});
-	</script>
 </div>
-
 
 {% endblock content %}

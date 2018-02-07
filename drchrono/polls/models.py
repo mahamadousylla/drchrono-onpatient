@@ -27,7 +27,7 @@ class Patient:
 		self.code = code
 
 
-class PatientID(models.Model): #models.Model
+class PatientID(models.Model):
 	id = models.IntegerField(primary_key=True)
 	sleep = list()
 	sleep_dates = list()
@@ -36,9 +36,6 @@ class PatientID(models.Model): #models.Model
 
 	weight = list()
 	weight_dates = list()
-	
+
+	hydrate = list()
 	hydrate_dates = list()
-
-
-
-

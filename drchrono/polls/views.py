@@ -88,7 +88,8 @@ def chart_hydrate(request):
 
 	db_methods.save_hydrate(hydrate, patientID)
 	obj = db_methods.get_hydrate(patientID)
-	return render(request, 'chart_hydrate.html', {'username': username})
+	obj["username"] = username
+	return render(request, 'chart_hydrate.html', obj)
 
 
 def logout(request):
