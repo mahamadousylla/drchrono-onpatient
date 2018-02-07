@@ -9,6 +9,12 @@ def helper(patientID):
 
 	return patient_obj or PatientID.objects.get(id=patientID)
 
+def get_num(n):
+  try:
+    return float(n)
+  except ValueError:
+    return int(n)
+
 def find_bp(systolic, diastolic):
 	pass
 
@@ -23,10 +29,9 @@ def save_bp(systolic, diastolic, patientID):
 	patient_obj.bp.append(obj)
 	
 
-
 def get_bp(patientID):
 	p = PatientID.objects.get(id=patientID)
-	return p.bp
+	return p.bp[::-1]
 
 
 def save_sleep(sleep, patientID):
@@ -54,12 +59,13 @@ def get_sleep(patientID):
 
 	return obj
 
+
 def save_weight(weight, patientID):
 	patient_obj = helper(patientID)
 	now = datetime.datetime.now()
 	curr_date = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
 	
-	patient_obj.weight.append(int(weight))
+	patient_obj.weight.append(get_num(weight))
 	patient_obj.weight_dates.append(curr_date)
 	patient_obj.save()
 
@@ -84,7 +90,7 @@ def save_hydrate(hydrate, patientID):
 	now = datetime.datetime.now()
 	curr_date = str(now.month) + "/" + str(now.day) + "/" + str(now.year)
 	
-	patient_obj.hydrate.append(int(hydrate))
+	patient_obj.hydrate.append(get_num(hydrate))
 	patient_obj.hydrate_dates.append(curr_date)
 	patient_obj.save()
 

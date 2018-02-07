@@ -51,18 +51,11 @@ def get_patient_data(patient):
 
 def set_patient_data(data, patient):
 	data = data['results'][0]
-	for k, v in data.items():
-		print(k, v, "\n")
-
-	# if not PatientID.objects.filter( id = data["identifier"] ).exists():
-	# 	patient_obj = PatientID.objects.create( id = data["identifier"] )
-	# 	patient_obj.save()
 
 	patient_data = []
 	patient_contact = []
 	name_dict = data["name"][0]
 	name =  " ".join(name_dict["family"]) + ", " + " ".join(name_dict["given"])
-	username = " ".join(name_dict["given"])
 
 	patient_data.append( ("Name", name) )
 	patient_data.append( ("ID", data["identifier"]) )
@@ -86,24 +79,20 @@ def set_patient_data(data, patient):
 
 	patient_data.append( ("Active", data["active"]) )
 
-	return patient_data, username, data["identifier"]
+	return patient_data, data["identifier"]
 
 
-def get_observation(patient):
-	results = list()
-	url = URL_CHRONO + 'onpatient_api/fhir/Observation'
+# def get_observation(patient):
+# 	results = list()
+# 	url = URL_CHRONO + 'onpatient_api/fhir/Observation'
 	
-	while url:
-		response = requests.get(URL_CHRONO + 'onpatient_api/fhir/Observation', headers= {
-	  	'Authorization': 'Bearer %s' % patient.get_access_token(),
-		})
+# 	while url:
+# 		response = requests.get(URL_CHRONO + 'onpatient_api/fhir/Observation', headers= {
+# 	  	'Authorization': 'Bearer %s' % patient.get_access_token(),
+# 		})
 
-		response.raise_for_status()
-		data = response.json()
+# 		response.raise_for_status()
+# 		data = response.json()
 
-		results.extend(data['results'])
-		url = data['next']
-	print(results)
-
-
-
+# 		results.extend(data['results'])
+# 		url = data['next']
