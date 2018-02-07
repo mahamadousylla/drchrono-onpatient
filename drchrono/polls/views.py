@@ -64,14 +64,16 @@ def weight(request):
 	return render(request, 'weight.html')
 
 def chart_weight(request):
-	print("hereeeee")
 	weight = request.GET.get("weight")
-	print("weight: ", weight)
-	if weight is None:
+	if weight is None or weight.strip() == "":
 		return redirect("/weight.html")
 
-	db_methods.save_weight(weight, patientID)
-	obj = db_methods.get_weight(patientID)
+	try:
+		db_methods.save_weight(weight, patientID)
+		obj = db_methods.get_weight(patientID)
+	except:
+		return redirect("/weight.html")
+	
 	return render(request, 'chart_weight.html', obj)
 
 
@@ -80,11 +82,15 @@ def hydrate(request):
 
 def chart_hydrate(request):
 	hydrate = request.GET.get("hydrate")
-	if hydrate is None:
+	if hydrate is None or hydrate.strip() == "":
 		return redirect("/hydrate.html")
 
-	db_methods.save_hydrate(hydrate, patientID)
-	obj = db_methods.get_hydrate(patientID)
+	try:
+		db_methods.save_hydrate(hydrate, patientID)
+		obj = db_methods.get_hydrate(patientID)
+	except:
+		return redirect("/hydrate.html")
+	
 	return render(request, 'chart_hydrate.html', obj)
 
 
