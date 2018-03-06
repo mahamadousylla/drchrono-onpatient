@@ -1,4 +1,5 @@
-# drchrono 2 week long hackathon building a web application utilizing their open source healthcare api
+# drchrono 2 week long hackathon
+# Developed a web application utilizing drchrono's open source healthcare api
 
 
 #### Start the project 
