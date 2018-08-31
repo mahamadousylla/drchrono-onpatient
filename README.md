@@ -13,7 +13,7 @@
     python manage.py migrate 
 
 ####
-    Visit /welcome
+    Visit /welcome in your browser
 
 #### After successfully starting the application, you will be prompted to authorize the application. Use the following credentials 
 
