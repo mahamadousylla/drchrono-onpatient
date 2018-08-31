@@ -12,6 +12,8 @@
     python manage.py makemigrations drchrono
     python manage.py migrate 
 
+####
+    Visit /welcome
 
 #### After successfully starting the application, you will be prompted to authorize the application. Use the following credentials 
 
